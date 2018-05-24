@@ -1,0 +1,1 @@
+for i in $(< file1) do for j in $(< file2) do echo $i $j done done

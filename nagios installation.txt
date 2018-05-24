@@ -1,0 +1,63 @@
+Install Prerequisite Software
+
+sudo yum install httpd php
+sudo yum install gcc glibc glibc-common
+sudo yum install gd gd-devel
+
+Create Account Information
+
+adduser -m nagios 
+passwd nagios
+#####Type######
+nagios
+
+groupadd nagcmd
+usermod -a -G nagcmd nagios
+usermod -a -G nagcmd apache
+
+Download Nagios Core and the Plugins
+mkdir ~/downloads 
+cd ~/downloads
+wget http://prdownloads.sourceforge.net/sourceforge/nagios/nagios-4.0.8.tar.gz 
+wget http://nagios-plugins.org/download/nagios-plugins-2.0.3.tar.gz
+
+Compile and Install Nagios
+
+tar zxvf nagios-4.0.8.tar.gz
+cd nagios-4.0.8
+
+./configure --with-command-group=nagcmd
+make all
+make install
+make install-init 
+make install-config
+make install-commandmode
+
+Customize Configuration
+(Optional)
+vim /usr/local/nagios/etc/objects/contacts.cfg
+Add email address
+
+Configure the Web Interface
+
+make install-webconf
+htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+##Type the passwd ###
+nagios
+service httpd restart
+
+
+Compile and Install the Nagios Plugins
+cd ~/downloads
+tar zxvf nagios-plugins-2.0.3.tar.gz
+cd nagios-plugins-2.0.3
+./configure --with-nagios-user=nagios --with-nagios-group=nagios
+make 
+make install
+
+Start Nagios
+chkconfig --add nagios
+chkconfig nagios on
+/usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+
+service nagios start

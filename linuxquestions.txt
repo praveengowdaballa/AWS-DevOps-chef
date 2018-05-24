@@ -1,0 +1,20 @@
+i habve likwe objects 60 + process i want to kill all the process ata a time but except tomcat and jboss
+kill ps -f processname
+kill option all
+awk command 
+
+tomcat instances frequently goin off
+jstack 
+
+memory statistics and log rotating rececently changed per misssions 
+servicer level changes bin folder 
+lib directory server.xml is amain tomcat
+memory is full r not disk space 
+ls 
+find netstat awk sort pg 
+copy jenkins jobs from othetr server
+build is failed what u l  do 
+how u;ll take a copy of jenkins jobs
+how do u prepare automate build
+how do u jenkins know code is updated?
+if u time is not pick by time how ull rectify
