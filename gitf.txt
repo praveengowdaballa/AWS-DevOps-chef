@@ -1,3 +1,0 @@
-awsdevops
-here i am writing git pull
-ok
